@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventCode.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,7 +42,7 @@ namespace AdventCode.Day4
                 var entry = logEntry.Entry;
                 if (entry.Contains("Guard #"))
                 {
-                    currentGuardId = int.Parse(StringHelper.GetSubstring(entry, "Guard #", "begins shift"));
+                    currentGuardId = int.Parse(entry.GetSubstringBetweenStrings("Guard #", "begins shift"));
                     if (!guardDict.ContainsKey(currentGuardId))
                     {
                         guardDict.Add(currentGuardId, new Guard());
@@ -74,7 +75,7 @@ namespace AdventCode.Day4
 
         public LogEntry(string inputLine)
         {
-            var dateString = StringHelper.GetSubstring(inputLine, "[", "]");
+            var dateString = inputLine.GetSubstringBetweenStrings("[", "]");
             Date = DateTime.Parse(dateString);
             Entry = inputLine.Substring(inputLine.IndexOf("]") + 1);
         }

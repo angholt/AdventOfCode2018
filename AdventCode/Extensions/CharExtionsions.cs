@@ -1,4 +1,4 @@
-﻿namespace AdventCode
+﻿namespace AdventCode.Extensions
 {
     public static class CharExtionsions
     {

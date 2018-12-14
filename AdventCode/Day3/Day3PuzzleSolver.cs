@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventCode.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -102,10 +103,10 @@ namespace AdventCode.Day3
 
         public Claim(string inputLine)
         {
-            Id = int.Parse(StringHelper.GetSubstring(inputLine, "#", "@"));
-            XStartPos = int.Parse(StringHelper.GetSubstring(inputLine, "@", ","));
-            YStartPos = int.Parse(StringHelper.GetSubstring(inputLine, ",", ":"));
-            XLength = int.Parse(StringHelper.GetSubstring(inputLine, ":", "x"));
+            Id = int.Parse(inputLine.GetSubstringBetweenStrings("#", "@"));
+            XStartPos = int.Parse(inputLine.GetSubstringBetweenStrings("@", ","));
+            YStartPos = int.Parse(inputLine.GetSubstringBetweenStrings(",", ":"));
+            XLength = int.Parse(inputLine.GetSubstringBetweenStrings(":", "x"));
             YLength = int.Parse(inputLine.Substring(inputLine.IndexOf("x") + 1));
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventCode.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +9,6 @@ namespace AdventCode.Day5
     public class Day5PuzzleSolver : PuzzleSolver
     {
         private char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-            //.ToDictionary(c => c, c => 0);
         public Day5PuzzleSolver(string inputFileName) : base(inputFileName)
         {
             
