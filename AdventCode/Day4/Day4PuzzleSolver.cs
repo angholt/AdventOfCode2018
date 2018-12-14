@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventCode
+namespace AdventCode.Day4
 {
     public class Day4PuzzleSolver : PuzzleSolver
     {

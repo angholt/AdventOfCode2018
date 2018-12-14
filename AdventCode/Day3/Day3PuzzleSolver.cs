@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace AdventCode
+namespace AdventCode.Day3
 {
     public class Day3PuzzleSolver : PuzzleSolver
     {

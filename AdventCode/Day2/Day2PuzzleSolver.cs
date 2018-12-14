@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace AdventCode
+namespace AdventCode.Day2
 {
     public class Day2PuzzleSolver : PuzzleSolver
     {

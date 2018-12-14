@@ -1,5 +1,4 @@
-﻿using AdventCode.Day5;
-using System;
+﻿using System;
 
 namespace AdventCode
 {
@@ -7,14 +6,34 @@ namespace AdventCode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello!");
+            Console.WriteLine("Merry Xmas!");
+            while (true)
+            {
+                Console.WriteLine("Enter the day of the puzzle you want to solve: ");
+                var input = Console.ReadLine();
 
-            var puzzleSolver = new Day5PuzzleSolver("Day5\\input.txt");
+                if (!int.TryParse(input, out var result) || result < 1 || result > 24)
+                {
+                    Console.WriteLine("Not a valid day!");
+                    continue;
+                }
+                else
+                {
+                    var puzzleSolver = PuzzleSolverFactory.Create(result);
+                    if(puzzleSolver == null)
+                    {
+                        Console.WriteLine("No puzzle solver available for this day yet");
+                        continue;
+                    }
 
-            puzzleSolver.SolvePuzzle();
-            
-            Console.WriteLine("Press any key to exit");
-            Console.ReadLine();
+                    puzzleSolver.SolvePuzzle();
+
+                    Console.WriteLine("Press any key to exit");
+                    Console.ReadLine();
+                    break;
+                }
+
+            }
         }
     }
 }

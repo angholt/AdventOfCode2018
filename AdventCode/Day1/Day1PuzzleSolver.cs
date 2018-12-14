@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace AdventCode
+namespace AdventCode.Day1
 {
-    public class Day1PuzzleSolver
+    public class Day1PuzzleSolver : PuzzleSolver
     {
-        private readonly string _puzzleInput;
-        public Day1PuzzleSolver(string inputFileName)
+        public Day1PuzzleSolver(string inputFileName) : base(inputFileName)
         {
-            _puzzleInput = inputFileName;
+
         }
 
-        public void SolvePuzzle()
+        public override void SolvePuzzle()
         {
             var frequencyChanges = GetFequencyChangesFromFile();
             var result = FindFirstReoccuringFrequency(frequencyChanges);
