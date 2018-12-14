@@ -19,21 +19,27 @@ namespace AdventCode.Day5
 
         private void ReactPolymer()
         {
-            bool reactionHasOccured = false;
-            do
+            int i = 0;
+            while(i < Polymer.Length -1)
             {
-                reactionHasOccured = false;
-                for (int i = 0; i < Polymer.Length -1; i++)
+                if(!CombinationIsReactive(Polymer[i], Polymer[i + 1]))
                 {
-                    if (CombinationIsReactive(Polymer[i], Polymer[i + 1]))
+                    i++;
+                    continue;
+                }
+                else
+                {
+                    Polymer = Polymer.Remove(i, 2);
+                    if (i > 0)
                     {
-                        Polymer = Polymer.Remove(i, 2);
-                        reactionHasOccured = true;
-                        break;
+                        i--;
+                    }
+                    else
+                    {
+                        i = 0;
                     }
                 }
-            } while (reactionHasOccured);
-
+            }
         }
 
         private bool CombinationIsReactive(char c1, char c2)

@@ -9,7 +9,7 @@ namespace AdventCode
         {
             Console.WriteLine("Hello!");
 
-            var puzzleSolver = new Day1PuzzleSolver("input1.txt");
+            var puzzleSolver = new Day5PuzzleSolver("Day5\\input.txt");
 
             puzzleSolver.SolvePuzzle();
             
