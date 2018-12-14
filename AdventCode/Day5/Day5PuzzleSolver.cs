@@ -1,35 +1,47 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace AdventCode.Day5
 {
     public class Day5PuzzleSolver : PuzzleSolver
     {
-        private string Polymer; 
+        private char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            //.ToDictionary(c => c, c => 0);
         public Day5PuzzleSolver(string inputFileName) : base(inputFileName)
         {
-            Polymer = File.ReadAllText(_puzzleInput).Trim();
+            
         }
 
         public override void SolvePuzzle()
         {
-            ReactPolymer();
-            Console.WriteLine($"After reaction there are {Polymer.Length} units left");
+            var originalPolymer = GetPolymer();
+            var reactedPolymer = ReactPolymer(originalPolymer);
+            Console.WriteLine($"After reaction there are {reactedPolymer.Length} units left");
+            var shortestPolymer = ProduceShortestPolymer(originalPolymer);
+            Console.WriteLine($"The shortest possible polymer is of length: {shortestPolymer}");
         }
 
-        private void ReactPolymer()
+        private string GetPolymer()
         {
+            return File.ReadAllText(_puzzleInput).Trim();
+        }
+
+        private string ReactPolymer(string originalPolymer)
+        {
+            var reactedPolymer = originalPolymer;
             int i = 0;
-            while(i < Polymer.Length -1)
+            while(i < reactedPolymer.Length -1)
             {
-                if(!CombinationIsReactive(Polymer[i], Polymer[i + 1]))
+                if(!CombinationIsReactive(reactedPolymer[i], reactedPolymer[i + 1]))
                 {
                     i++;
                     continue;
                 }
                 else
                 {
-                    Polymer = Polymer.Remove(i, 2);
+                    reactedPolymer = reactedPolymer.Remove(i, 2);
                     if (i > 0)
                     {
                         i--;
@@ -40,6 +52,22 @@ namespace AdventCode.Day5
                     }
                 }
             }
+            return reactedPolymer;
+        }
+
+        private int ProduceShortestPolymer(string originalPolymer)
+        {
+            var experimentResults = new Dictionary<char, int>();
+
+            foreach(var c in alphabet)
+            {
+                var trimmedPolymer = originalPolymer.ReplaceIgnoreCase(c.ToString(), "");
+
+                var polymerLength = ReactPolymer(trimmedPolymer).Length;
+                experimentResults.Add(c, polymerLength);
+            }
+
+            return experimentResults.Min(er => er.Value);
         }
 
         private bool CombinationIsReactive(char c1, char c2)
